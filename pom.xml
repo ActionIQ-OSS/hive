@@ -21,7 +21,7 @@
   </parent>
   <groupId>org.spark-project.hive</groupId>
   <artifactId>hive</artifactId>
-  <version>1.2.1.spark2</version>
+  <version>1.2.1.spark2-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <!-- See http://central.sonatype.org/pages/apache-maven.html -->
@@ -184,6 +184,59 @@
 
   <repositories>
    <!-- This needs to be removed before checking in-->
+    <repository>
+      <id>apache</id>
+      <name>Apache Repository</name>
+      <url>https://repository.apache.org/content/repositories</url>
+      <releases>
+      <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>central</id>
+      <name>Maven Repository</name>
+      <url>https://repo.maven.apache.org/maven2</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>jcenter</id>
+      <name>JCenter Bintray</name>
+      <url>https://jcenter.bintray.com</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>spring-snapshots</id>
+      <url>https://repo.spring.io/snapshot</url>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>spring-milestones</id>
+      <url>https://repo.spring.io/milestone</url>
+    </repository>
+    <repository>
+      <id>conjars.org</id>
+      <url>https://conjars.org/repo</url>
+    </repository>
+    <repository>
+      <id>icm</id>
+      <name>ICM Repository</name>
+      <url>https://maven.icm.edu.pl/artifactory/repo/</url>
+    </repository>
     <repository>
       <id>datanucleus</id>
       <name>datanucleus maven repository</name>
@@ -513,11 +566,6 @@
         <version>${curator.version}</version>
       </dependency>
       <dependency>
-        <groupId>org.apache.curator</groupId>
-        <artifactId>curator-recipes</artifactId>
-        <version>${curator.version}</version>
-      </dependency>
-      <dependency>
         <groupId>org.codehaus.groovy</groupId>
         <artifactId>groovy-all</artifactId>
         <version>${groovy.version}</version>
@@ -735,22 +783,6 @@
     </pluginManagement>
 
     <plugins>
-
-      <!-- OSS sonatype requires GPG signatures - http://blog.sonatype.com/2010/01/how-to-generate-pgp-signatures-with-maven/#.VbrkazBVjGM-->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-gpg-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>sign-artifacts</id>
-            <phase>verify</phase>
-            <goals>
-              <goal>sign</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-
       <!-- plugins are always listed in sorted order by groupId, artifectId -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
