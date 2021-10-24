@@ -215,8 +215,7 @@ public class Hadoop23Shims extends HadoopShimsSecure {
   public void startPauseMonitor(Configuration conf) {
     try {
       Class.forName("org.apache.hadoop.util.JvmPauseMonitor");
-      org.apache.hadoop.util.JvmPauseMonitor pauseMonitor = new org.apache.hadoop.util
-          .JvmPauseMonitor(conf);
+      org.apache.hadoop.util.JvmPauseMonitor pauseMonitor = new org.apache.hadoop.util.JvmPauseMonitor();
       pauseMonitor.start();
     } catch (Throwable t) {
       LOG.warn("Could not initiate the JvmPauseMonitor thread." + " GCs and Pauses may not be " +
