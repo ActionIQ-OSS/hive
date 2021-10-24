@@ -108,7 +108,7 @@
     <activemq.version>5.5.0</activemq.version>
     <ant.version>1.9.1</ant.version>
     <antlr.version>3.4</antlr.version>
-    <avro.version>1.7.5</avro.version>
+    <avro.version>1.10.2</avro.version>
     <bonecp.version>0.8.0.RELEASE</bonecp.version>
     <calcite.version>1.2.0-incubating</calcite.version>
     <datanucleus-api-jdo.version>3.2.6</datanucleus-api-jdo.version>
@@ -126,10 +126,11 @@
     <commons-pool.version>1.5.4</commons-pool.version>
     <commons-dbcp.version>1.4</commons-dbcp.version>
     <derby.version>10.10.2.0</derby.version>
-    <guava.version>14.0.1</guava.version>
+    <guava.version>20.0</guava.version>
     <groovy.version>2.1.6</groovy.version>
     <hadoop-20S.version>1.2.1</hadoop-20S.version>
-    <hadoop-23.version>2.6.0</hadoop-23.version>
+    <!-- https://github.com/ActionIQ/hadoop -->
+    <hadoop-23.version>2.9.2-aiq6</hadoop-23.version>
     <hadoop.bin.path>${basedir}/${hive.path.to.root}/testutils/hadoop</hadoop.bin.path>
     <hbase.hadoop1.version>0.98.9-hadoop1</hbase.hadoop1.version>
     <hbase.hadoop2.version>0.98.9-hadoop2</hbase.hadoop2.version>
@@ -236,6 +237,17 @@
       <id>icm</id>
       <name>ICM Repository</name>
       <url>https://maven.icm.edu.pl/artifactory/repo/</url>
+    </repository>
+    <repository>
+      <id>aws-releases</id>
+      <name>AWS Releases Repository</name>
+      <url>s3://aiq-artifacts/releases</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
     </repository>
     <repository>
       <id>datanucleus</id>
@@ -659,6 +671,13 @@
   </dependencies>
 
   <build>
+    <extensions>
+      <extension>
+        <groupId>org.springframework.build</groupId>
+        <artifactId>aws-maven</artifactId>
+        <version>5.0.0.RELEASE</version>
+      </extension>
+    </extensions>
     <pluginManagement>
       <plugins>
         <!-- plugins are always listed in sorted order by groupId, artifectId -->
