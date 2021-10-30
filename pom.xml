@@ -109,7 +109,7 @@
     <ant.version>1.9.1</ant.version>
     <antlr.version>3.4</antlr.version>
     <!--
-      CDP-1902: this should be upgraded to 1.10.2 to match what AIQ has! Since its not,
+      CDP-1967: this should be upgraded to 1.10.2 to match what AIQ has! Since its not,
       any Spark-hive tests will break when using this build.
     -->
     <avro.version>1.8.2</avro.version>
