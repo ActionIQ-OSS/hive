@@ -65,6 +65,7 @@ import org.apache.log4j.PatternLayout;
 import org.apache.log4j.WriterAppender;
 import org.apache.thrift.protocol.TBinaryProtocol;
 import org.junit.Assert;
+import org.junit.Ignore;
 
 import com.google.common.collect.ImmutableMap;
 
@@ -250,6 +251,7 @@ public class TestHive extends TestCase {
    *
    * @throws Throwable
    */
+  Ignore("Logging class name isn't correct")
   public void testMetaStoreApiTiming() throws Throwable {
     // set log level to DEBUG, as this is logged at debug level
     Logger logger = Logger.getLogger("hive.ql.metadata.Hive");
@@ -268,20 +270,16 @@ public class TestHive extends TestCase {
       hm.dumpAndClearMetaCallTiming("test");
       String logStr = writer.toString();
       String expectedString = "getAllDatabases_()=";
-/*
-      TODO: broken because I think the logging class ^^ isnt correct
       Assert.assertTrue(logStr + " should contain <" + expectedString,
           logStr.contains(expectedString));
-*/
+
       // reset the log buffer, verify new dump without any api call does not contain func
       writer.getBuffer().setLength(0);
       hm.dumpAndClearMetaCallTiming("test");
       logStr = writer.toString();
-/*
-      TODO: broken because I think the logging class ^^ isnt correct
       Assert.assertFalse(logStr + " should not contain <" + expectedString,
           logStr.contains(expectedString));
- */
+
     } finally {
       logger.setLevel(origLevel);
       logger.removeAppender(appender);
