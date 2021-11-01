@@ -251,7 +251,7 @@ public class TestHive extends TestCase {
    *
    * @throws Throwable
    */
-  Ignore("Logging class name isn't correct")
+  @Ignore("Logging class name isn't correct")
   public void testMetaStoreApiTiming() throws Throwable {
     // set log level to DEBUG, as this is logged at debug level
     Logger logger = Logger.getLogger("hive.ql.metadata.Hive");
