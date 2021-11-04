@@ -73,6 +73,7 @@ import org.apache.hadoop.util.StringUtils;
 import org.apache.hive.common.util.AnnotationUtils;
 import org.apache.hive.common.util.ReflectionUtil;
 
+import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Iterators;
 
 /**
@@ -104,7 +105,7 @@ public class FetchOperator implements Serializable {
 
   private transient Iterator<Path> iterPath;
   private transient Iterator<PartitionDesc> iterPartDesc;
-  private transient Iterator<FetchInputFormatSplit> iterSplits = Iterators.emptyIterator();
+  private transient Iterator<FetchInputFormatSplit> iterSplits = ImmutableSet.<FetchInputFormatSplit>of().iterator();
 
   private transient Path currPath;
   private transient PartitionDesc currDesc;
@@ -529,7 +530,7 @@ public class FetchOperator implements Serializable {
       this.currPath = null;
       this.iterPath = null;
       this.iterPartDesc = null;
-      this.iterSplits = Iterators.emptyIterator();
+      this.iterSplits = ImmutableSet.<FetchInputFormatSplit>of().iterator();
     } catch (Exception e) {
       throw new HiveException("Failed with exception " + e.getMessage()
           + StringUtils.stringifyException(e));
