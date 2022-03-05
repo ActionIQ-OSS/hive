@@ -112,3 +112,22 @@ Useful mailing lists
 3. commits@hive.apache.org - In order to monitor commits to the source
    repository. Send an empty email to commits-subscribe@hive.apache.org
    in order to subscribe to this mailing list.
+
+
+========
+AIQ DEV
+========
+# set the version (bump to the next -aiq#)
+mvn versions:set -DgenerateBackupPoms=false -Dhttps.protocols=TLSv1,TLSv1.1,TLSv1.2
+
+# build, this places artifacts in ~/.m2/repository/org/spark-project/hive/
+mvn clean install -DskipTests -Dmaven.javadoc.skip=true -Dhttps.protocols=TLSv1,TLSv1.1,TLSv1.2 -Phadoop-2 -Psources
+
+# run tests
+mvn test -Dhttps.protocols=TLSv1,TLSv1.1,TLSv1.2 -Phadoop-2
+
+# to deploy to S3 at our bucket s3://s3.amazonaws.com/aiq-artifacts/ use:
+mvn deploy -DskipTests -Dmaven.javadoc.skip=true -Dhttps.protocols=TLSv1,TLSv1.1,TLSv1.2 -Phadoop-2 -Psources
+
+# Based off of https://nuvalence.io/blog/using-a-s3-bucket-as-a-maven-repository
+# NOTE we put the user/password in ~/.m2/settings.xml so it's not checked in
