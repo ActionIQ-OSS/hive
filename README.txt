@@ -117,6 +117,15 @@ Useful mailing lists
 ========
 AIQ DEV
 ========
+
+# run `mvn -version` to make sure you have Maven using Java 1.8, if not set to wherever it is on your machine
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
+export PATH=$JAVA_HOME/bin:$PATH
+
+# before starting, get a clean state
+rm -rf ~/.m2/repository
+mvn clean
+
 # set the version (bump to the next -aiq#)
 mvn versions:set -DgenerateBackupPoms=false -Dhttps.protocols=TLSv1,TLSv1.1,TLSv1.2
 
