@@ -172,17 +172,18 @@ public class Hive {
 
   public static void reloadFunctions() throws HiveException {
     Hive db = Hive.get();
-    db.conf.getBoolVar()
-    for (String dbName : db.getAllDatabases()) {
-      for (String functionName : db.getFunctions(dbName, "*")) {
-        Function function = db.getFunction(dbName, functionName);
-        try {
-	  FunctionRegistry.registerPermanentFunction(
-	      FunctionUtils.qualifyFunctionName(functionName, dbName), function.getClassName(),
-	      false, FunctionTask.toFunctionResource(function.getResourceUris()));
-        } catch (Exception e) {
-          LOG.warn("Failed to register persistent function " +
-              functionName + ":" + function.getClassName() + ". Ignore and continue.");
+    if (db.conf.getBoolVar(HiveConf.ConfVars.LOAD_DATABASE_FUNCTIONS)) {
+      for (String dbName : db.getAllDatabases()) {
+        for (String functionName : db.getFunctions(dbName, "*")) {
+          Function function = db.getFunction(dbName, functionName);
+          try {
+            FunctionRegistry.registerPermanentFunction(
+              FunctionUtils.qualifyFunctionName(functionName, dbName), function.getClassName(),
+              false, FunctionTask.toFunctionResource(function.getResourceUris()));
+          } catch (Exception e) {
+            LOG.warn("Failed to register persistent function " +
+                functionName + ":" + function.getClassName() + ". Ignore and continue.");
+          }
         }
       }
     }
