@@ -172,6 +172,7 @@ public class Hive {
 
   public static void reloadFunctions() throws HiveException {
     Hive db = Hive.get();
+    db.conf.getBoolVar()
     for (String dbName : db.getAllDatabases()) {
       for (String functionName : db.getFunctions(dbName, "*")) {
         Function function = db.getFunction(dbName, functionName);
